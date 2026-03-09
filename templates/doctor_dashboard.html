@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Dashboard - MedTrack</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-stethoscope"></i> Appointments</h1>
+        <p>View all scheduled patient appointments.</p>
+
+        {% if appointments %}
+        <table>
+            <tr>
+                <th>Patient Name</th>
+                <th>Date</th>
+            </tr>
+            {% for appointment in appointments %}
+            <tr>
+                <td><i class="fas fa-user"></i> {{ appointment.name }}</td>
+                <td><i class="fas fa-calendar-day"></i> {{ appointment.date }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No appointments scheduled.</p>
+        {% endif %}
+        <p class="appointments-link">
+            <a href="{{ url_for('view_appointments') }}">View My Appointments</a>
+        </p>
+        
+       
+
+    </div>
+    
+</body>
+
+</html>

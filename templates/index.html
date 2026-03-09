@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MedTrack Healthcare</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .home-buttons button {
+            background-color: #0d6efd;
+            color: #fff;
+            border: none;
+            padding: 15px 25px;
+            margin: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+        .home-buttons button:hover {
+            background-color: #0b5ed7;
+            transform: translateY(-3px);
+        }
+        /* Features Section */
+        .features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .feature-card {
+            flex: 1 1 30%;
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .feature-card i {
+            font-size: 45px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .feature-1 i { color: #ff6b6b; }
+        .feature-2 i { color: #51cf66; }
+        .feature-3 i { color: #f59f00; }
+
+        .feature-1 h3 { color: #ff6b6b; }
+        .feature-2 h3 { color: #51cf66; }
+        .feature-3 h3 { color: #f59f00; }
+
+        .feature-card p {
+            color: #555;
+        }
+
+        @media (max-width: 900px) {
+            .features {
+                flex-direction: column;
+            }
+            .feature-card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-hospital"></i> MedTrack</h1>
+        <h2>Real-Time Healthcare Management System</h2>
+        <p>Book appointments, view doctor schedules, and manage healthcare easily.</p>
+
+        <div class="home-buttons">
+            <a href="/patient_login"><button><i class="fas fa-user"></i> Patient Login</button></a>
+            <a href="/doctor_login"><button><i class="fas fa-user-md"></i> Doctor Login</button></a>
+        </div>
+
+        <h2 style="margin-top:50px;">Why Choose MedTrack?</h2>
+
+        <div class="features">
+            <div class="feature-card feature-1">
+                <i class="fas fa-user-md"></i>
+                <h3>Qualified Doctors</h3>
+                <p>All our doctors are certified professionals ready to serve you with care.</p>
+            </div>
+
+            <div class="feature-card feature-2">
+                <i class="fas fa-calendar-check"></i>
+                <h3>Easy Appointment Booking</h3>
+                <p>Book your appointments online quickly and efficiently anytime, anywhere.</p>
+            </div>
+
+            <div class="feature-card feature-3">
+                <i class="fas fa-notes-medical"></i>
+                <h3>Medical Records</h3>
+                <p>Access and manage your medical records securely in real time with complete privacy.</p>
+            </div>
+        </div>
+    </div>
+   </body>
+</html>

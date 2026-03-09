@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Appointments - MedTrack</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>My Appointments</h1>
+        {% if appointments %}
+            <table>
+                <thead>
+                    <tr>
+                        {% if session.patient %}
+                            <th>Doctor Name</th>
+                            <th>Speciality</th>
+                        {% elif session.doctor %}
+                            <th>Patient Name</th>
+                        {% endif %}
+                        <th>Date & Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for app in appointments %}
+                        <tr>
+                            {% if session.patient %}
+                                <td>{{ app['doctor_name'] }}</td>
+                                <td>{{ app['speciality'] }}</td>
+                            {% elif session.doctor %}
+                                <td>{{ app['patient_name'] }}</td>
+                            {% endif %}
+                            <td>{{ app['date'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No appointments found.</p>
+        {% endif %}
+
+        <br>
+            <a href="{{ url_for('patient_dashboard') if session.patient else url_for('doctor_dashboard') }}">Back to Dashboard</a>
+        </br>
+    </div>
+
+</body>
+</html>
