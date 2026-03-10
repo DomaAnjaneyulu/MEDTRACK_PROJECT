@@ -74,12 +74,14 @@ def doctor_register():
         speciality = request.form["speciality"]
         email = request.form["email"]
         password = request.form["password"]
+        timing = request.form["timing"]
+        days = request.form["days"]
 
         conn = get_db()
 
         conn.execute(
-            "INSERT INTO doctors (name,speciality,email,password) VALUES (?,?,?,?)",
-            (name,speciality,email,password)
+        "INSERT INTO doctors (name,speciality,email,password,timing,days) VALUES (?,?,?,?,?,?)",
+        (name,speciality,email,password,timing,days)
         )
 
         conn.commit()
@@ -133,14 +135,24 @@ def patient_dashboard():
 
         doctor_id = request.form["doctor"]
         date = request.form["date"]
+        time = request.form["time"]
+        reason = request.form["reason"]
 
-        conn.execute(
-            "INSERT INTO appointments (patient_id,doctor_id,date) VALUES (?,?,?)",
-            (session["patient"],doctor_id,date)
-        )
+        doctor = conn.execute(
+        "SELECT timing,days FROM doctors WHERE id=?",
+        (doctor_id,)
+        ).fetchone()
 
-        conn.commit()
-        booked = True
+        # simple availability check
+        if doctor:
+
+            conn.execute(
+            "INSERT INTO appointments (patient_id,doctor_id,date,time,reason) VALUES (?,?,?,?,?)",
+            (session["patient"],doctor_id,date,time,reason)
+            )
+
+            conn.commit()
+            booked = True
 
     conn.close()
 
@@ -154,7 +166,7 @@ def doctor_dashboard():
     conn = get_db()
 
     appointments = conn.execute("""
-    SELECT appointments.date, patients.name
+    SELECT appointments.date, appointments.time, appointments.reason, patients.name
     FROM appointments
     JOIN patients ON appointments.patient_id = patients.id
     WHERE doctor_id = ?
@@ -198,6 +210,10 @@ def view_appointments():
 
     return render_template('appointments.html', appointments=appointments)
 
+@app.route("/logout")
+def logout():
+    session.clear()   # removes patient or doctor session
+    return redirect("/")   # redirect to index page
 
 if __name__ == "__main__":
     app.run(debug=True)

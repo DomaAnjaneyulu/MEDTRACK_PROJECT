@@ -7,7 +7,11 @@
 </head>
 <body>
     <div class="container">
+        <div class="top-bar">
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
         <h1><i class="fas fa-calendar-check"></i> Book an Appointment</h1>
+        
         <p>Select a doctor and date to schedule your appointment easily.</p>
 
         <form method="POST" action="/patient_dashboard">
@@ -20,10 +24,16 @@
 
             <label>Select Date:</label>
             <input type="date" name="date" required>
+            <label>Select Time:</label>
+            <input type="time" name="time" required>
+
+            <label>Reason / Problem:</label>
+            <input type="text" name="reason" placeholder="Describe your problem" required>
 
             <button type="submit">
             <i class="fas fa-calendar-plus"></i> Book Appointment
             </button>
+            
         </form>
         
 

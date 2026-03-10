@@ -7,21 +7,30 @@
 </head>
 <body>
     <div class="container">
+        <div class="top-bar">
+            <a href="/logout" class="logout-btn">Logout</a>
+        </div>
         <h1><i class="fas fa-stethoscope"></i> Appointments</h1>
         <p>View all scheduled patient appointments.</p>
 
         {% if appointments %}
         <table>
-            <tr>
-                <th>Patient Name</th>
-                <th>Date</th>
-            </tr>
-            {% for appointment in appointments %}
-            <tr>
-                <td><i class="fas fa-user"></i> {{ appointment.name }}</td>
-                <td><i class="fas fa-calendar-day"></i> {{ appointment.date }}</td>
-            </tr>
-            {% endfor %}
+        <tr>
+        <th>Patient Name</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Reason</th>
+        </tr>
+
+        {% for appointment in appointments %}
+        <tr>
+        <td><i class="fas fa-user"></i> {{ appointment.name }}</td>
+        <td><i class="fas fa-calendar-day"></i> {{ appointment.date }}</td>
+        <td><i class="fas fa-clock"></i> {{ appointment.time }}</td>
+        <td>{{ appointment.reason }}</td>
+        </tr>
+        {% endfor %}
+
         </table>
         {% else %}
         <p>No appointments scheduled.</p>
